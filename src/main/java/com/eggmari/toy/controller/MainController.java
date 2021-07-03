@@ -19,7 +19,7 @@ public class MainController {
         ModelAndView mav = new ModelAndView("Main");
         mav.addObject("name", "오브젝트");
         List<String> testList = new ArrayList<>();
-        testList.add("왜");
+        testList.add("왜안된데");
 
         testList.add("안");
 

@@ -8,5 +8,7 @@
 </head>
 <body>
 <h2>Hello, Worsslasdd!</h2>
+<h2>${name}</h2>
+<h2>${testList}</h2>
 </body>
 </html>
