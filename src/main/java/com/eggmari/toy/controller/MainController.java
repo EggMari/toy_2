@@ -27,6 +27,8 @@ public class MainController {
         mav.addObject("list", testList);
         System.out.println("왜안돼");
         return mav;
-
     }
+
+
+
 }
