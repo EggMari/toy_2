@@ -31,3 +31,7 @@ target/
 
 ### VS Code ###
 .vscode/
+
+### appconfig ###
+
+src/main/resources/application.properties
