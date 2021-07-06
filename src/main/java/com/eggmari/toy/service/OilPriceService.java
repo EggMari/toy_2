@@ -1,10 +1,11 @@
 package com.eggmari.toy.service;
 
 
+import com.eggmari.toy.dto.OilPriceDto;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +62,35 @@ public class OilPriceService {
 
         return jsonobj;
     }
+
+    public void savePrices(JSONObject json){
+        JSONParser jsonParser = new JSONParser();
+
+        JSONObject json_getResult = (JSONObject) json.get("RESULT");
+        JSONArray  json_getOIL = (JSONArray) json_getResult.get("OIL");
+/**
+ *  private int oil_idx;
+ *     @Column(length = 20, nullable = false)
+ *     private String oil_kind;
+ *     @Column(length = 20, nullable = false)
+ *     private double oil_price;
+ *     @Column(length = 20, nullable = false)
+ *     private double oil_price_Increase;
+ *     @Column(length = 20, nullable = false)
+ *     private String sale_area;
+ *
+ */
+        for(int a = 0; a < json_getOIL.size(); a++){
+            JSONObject oil = (JSONObject) json_getOIL.get(a);
+            String sale_area = (String)oil.get("SIDONM");
+            String oil_kind = (String)oil.get("PRODCD");
+            Double oil_price = (Double)oil.get("PRICE");
+            Double oil_price_Increase = (Double)oil.get("DIFF");
+
+        }
+
+    }
+
+
 
 }

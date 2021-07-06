@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@Table(name = "Oil_price")
 public class OilPriceDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
