@@ -2,10 +2,14 @@ package com.eggmari.toy.service;
 
 
 import com.eggmari.toy.dto.OilPriceDto;
+import com.eggmari.toy.repository.OilPriceRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +21,16 @@ import java.net.URL;
 
 @Service
 @Component
+@RequiredArgsConstructor
+@Slf4j
 public class OilPriceService {
     private final String siteUrl = "http://www.opinet.co.kr/api/avgSidoPrice.do";
     private final String oilAuthCode = "F958210319";
     private final String prodcd = "D047";
+
+    @Autowired
+    private final OilPriceRepository oilPriceRepository;
+
 
 
     public JSONObject getOilPrice() throws ParseException {
@@ -64,28 +74,24 @@ public class OilPriceService {
     }
 
     public void savePrices(JSONObject json){
-        JSONParser jsonParser = new JSONParser();
 
         JSONObject json_getResult = (JSONObject) json.get("RESULT");
         JSONArray  json_getOIL = (JSONArray) json_getResult.get("OIL");
-/**
- *  private int oil_idx;
- *     @Column(length = 20, nullable = false)
- *     private String oil_kind;
- *     @Column(length = 20, nullable = false)
- *     private double oil_price;
- *     @Column(length = 20, nullable = false)
- *     private double oil_price_Increase;
- *     @Column(length = 20, nullable = false)
- *     private String sale_area;
- *
- */
+
         for(int a = 0; a < json_getOIL.size(); a++){
             JSONObject oil = (JSONObject) json_getOIL.get(a);
             String sale_area = (String)oil.get("SIDONM");
             String oil_kind = (String)oil.get("PRODCD");
             Double oil_price = (Double)oil.get("PRICE");
             Double oil_price_Increase = (Double)oil.get("DIFF");
+
+            final OilPriceDto oilPrice = OilPriceDto.builder()
+                    .oil_price(oil_price)
+                    .oil_kind(oil_kind)
+                    .sale_area(sale_area)
+                    .oil_price_Increase(oil_price_Increase)
+                    .build();
+            oilPriceRepository.save(oilPrice);
 
         }
 

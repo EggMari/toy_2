@@ -1,7 +1,7 @@
 package com.eggmari.toy.controller;
 
 import com.eggmari.toy.service.OilPriceService;
-import org.json.JSONArray;
+import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+@RequiredArgsConstructor
 public class OilPriceController {
+
+    private final OilPriceService oilPriceService;
 
     @ResponseBody
     @RequestMapping(value = "/oilbutton")
     public JSONObject button() throws ParseException {
-        OilPriceService oilPriceService = new OilPriceService();
+
         JSONObject oilPrices = oilPriceService.getOilPrice();
         oilPriceService.savePrices(oilPrices);
         return oilPrices;
