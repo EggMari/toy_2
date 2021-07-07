@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity(name = "Oil_price")
+@Entity
 public class OilPriceDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

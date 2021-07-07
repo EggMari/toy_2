@@ -14,7 +14,7 @@ import java.util.List;
 public class MainController {
     
     
-    @RequestMapping(value = "/main")
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
     public ModelAndView main(){
         ModelAndView mav = new ModelAndView("Main");
         mav.addObject("name", "오브젝트");

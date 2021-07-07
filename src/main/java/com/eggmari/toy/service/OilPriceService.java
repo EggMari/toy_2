@@ -4,7 +4,6 @@ package com.eggmari.toy.service;
 import com.eggmari.toy.dto.OilPriceDto;
 import com.eggmari.toy.repository.OilPriceRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,18 +19,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 @Service
-@Component
 @RequiredArgsConstructor
-@Slf4j
 public class OilPriceService {
     private final String siteUrl = "http://www.opinet.co.kr/api/avgSidoPrice.do";
     private final String oilAuthCode = "F958210319";
     private final String prodcd = "D047";
 
-    @Autowired
+    @Autowired// 여기서 에러발생함
     private final OilPriceRepository oilPriceRepository;
-
-
 
     public JSONObject getOilPrice() throws ParseException {
         BufferedReader br = null;

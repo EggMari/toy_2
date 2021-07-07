@@ -9,13 +9,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @EnableScheduling
-@ComponentScan(basePackages = {"com.eggmari.toy.controller", "com.eggmari.toy.service", "com.eggmari.toy.repository"})
-@SpringBootApplication(scanBasePackages={"com.eggmari.toy.controller", "com.eggmari.toy.service"})
-@EnableJpaRepositories(basePackages = {"com.eggmari.toy.service"})
+@ComponentScan({"com.eggmari.toy.configuration", "com.eggmari.toy.controller", "com.eggmari.toy.service"})
+@SpringBootApplication(scanBasePackages = {"com.eggmari.toy.controller", "com.eggmari.toy.service", "com.eggmari.toy.configuration"})
+@EnableJpaRepositories(basePackages = {"com.eggmari.toy.repository"})
 public class ToyprojectApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(ToyprojectApplication.class, args);
 	}
 
