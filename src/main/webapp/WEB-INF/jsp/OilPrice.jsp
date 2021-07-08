@@ -40,7 +40,7 @@
 <button id="getoil">버트은</button>
 이곳은 오일가격을 갖고올 프로젝트가 들어올 곳
 
-제이슨 ${jsonString}
+제이슨
 
 </body>
 </html>

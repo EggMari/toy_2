@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @ComponentScan({"com.eggmari.toy.configuration", "com.eggmari.toy.controller", "com.eggmari.toy.service"})
-@SpringBootApplication(scanBasePackages = {"com.eggmari.toy.controller", "com.eggmari.toy.service", "com.eggmari.toy.configuration"})
+@SpringBootApplication
 @EnableJpaRepositories(basePackages = {"com.eggmari.toy.repository"})
 public class ToyprojectApplication {
 
