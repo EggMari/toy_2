@@ -30,8 +30,8 @@ public class OilPriceController {
 
 
     @RequestMapping(value = "/OilPrice")
-    public ModelAndView main() {
-        ModelAndView mav = new ModelAndView("OilPrice");
+    public ModelAndView main(ModelAndView mav) {
+        mav.setViewName("OilPrice");
 
         return mav;
 

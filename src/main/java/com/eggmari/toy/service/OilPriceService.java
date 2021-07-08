@@ -1,7 +1,7 @@
 package com.eggmari.toy.service;
 
 
-import com.eggmari.toy.dto.OilPriceDto;
+import com.eggmari.toy.dto.OilPrice;
 import com.eggmari.toy.repository.OilPriceRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
@@ -25,7 +25,7 @@ public class OilPriceService {
     private final String oilAuthCode = "F958210319";
     private final String prodcd = "D047";
 
-    @Autowired// 여기서 에러발생함
+
     private final OilPriceRepository oilPriceRepository;
 
     public JSONObject getOilPrice() throws ParseException {
@@ -80,7 +80,7 @@ public class OilPriceService {
             Double oil_price = (Double)oil.get("PRICE");
             Double oil_price_Increase = (Double)oil.get("DIFF");
 
-            final OilPriceDto oilPrice = OilPriceDto.builder()
+            final OilPrice oilPrice = OilPrice.builder()
                     .oil_price(oil_price)
                     .oil_kind(oil_kind)
                     .sale_area(sale_area)
