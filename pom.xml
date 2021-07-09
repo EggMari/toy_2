@@ -8,6 +8,8 @@
 		<version>2.4.9-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+
 	<groupId>com.eggmari</groupId>
 	<artifactId>toy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -119,6 +121,12 @@
 			<releases>
 				<enabled>false</enabled>
 			</releases>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>repository.spring.release</id>
+			<name>Spring GA Repository</name>
+			<url>https://repo.spring.io/plugins-release/</url>
 		</pluginRepository>
 	</pluginRepositories>
 

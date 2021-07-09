@@ -1,6 +1,7 @@
 package com.eggmari.toy.controller;
 
 import com.eggmari.toy.service.OilPriceService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -30,10 +31,12 @@ public class OilPriceController {
 
 
     @RequestMapping(value = "/OilPrice")
-    public ModelAndView main(ModelAndView mav) {
+    public ModelAndView main(ModelAndView mav) throws JsonProcessingException {
         mav.setViewName("OilPrice");
-
+        oilPriceService.searchOilPriceForArea("서울");
         return mav;
 
     }
+
+
 }

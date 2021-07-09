@@ -3,6 +3,8 @@ package com.eggmari.toy.service;
 
 import com.eggmari.toy.dto.OilPrice;
 import com.eggmari.toy.repository.OilPriceRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,6 +19,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +28,6 @@ public class OilPriceService {
     private final String siteUrl = "http://www.opinet.co.kr/api/avgSidoPrice.do";
     private final String oilAuthCode = "F958210319";
     private final String prodcd = "D047";
-
 
     private final OilPriceRepository oilPriceRepository;
 
@@ -81,15 +84,27 @@ public class OilPriceService {
             Double oil_price_Increase = (Double)oil.get("DIFF");
 
             final OilPrice oilPrice = OilPrice.builder()
-                    .oil_price(oil_price)
-                    .oil_kind(oil_kind)
-                    .sale_area(sale_area)
-                    .oil_price_Increase(oil_price_Increase)
+                    .oilPrice(oil_price)
+                    .oilKind(oil_kind)
+                    .saleArea(sale_area)
+                    .oilPriceIncrease(oil_price_Increase)
                     .build();
             oilPriceRepository.save(oilPrice);
 
         }
 
+    }
+
+    public JSONObject searchOilPriceForArea(String area) throws JsonProcessingException {
+        JSONObject json = new JSONObject();
+        List<OilPrice> oilPriceList = new ArrayList<>();
+        oilPriceRepository.findBySaleArea(area).forEach(e -> oilPriceList.add(e));
+        ObjectMapper ojm = new ObjectMapper();
+
+        String aa = ojm.writeValueAsString(oilPriceList);
+        System.out.println(aa);
+
+        return json;
     }
 
 
