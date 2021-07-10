@@ -15,7 +15,7 @@ public class MainController {
     @RequestMapping(value = "/main")
     public ModelAndView main(HttpServletRequest req){
         ModelAndView mav = new ModelAndView("template/template");
-        req.setAttribute("CONTENT", "/WEB-INF/jsp/Main.jsp");
+        req.setAttribute("CONTENT", "Main");
         return mav;
     }
 
