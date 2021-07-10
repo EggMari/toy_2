@@ -107,6 +107,11 @@ public class OilPriceService {
         return json;
     }
 
+    public List<String> searchOilPriceList(){
+        List<String> area_list = oilPriceRepository.findSaleAreaList();
+        return area_list;
+    }
+
 
 
 }

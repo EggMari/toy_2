@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +13,9 @@ public class MainController {
     
     
     @RequestMapping(value = "/main")
-    public ModelAndView main(){
-        ModelAndView mav = new ModelAndView("Main");
-        mav.addObject("name", "오브젝트");
-        List<String> testList = new ArrayList<>();
-        testList.add("왜안된데");
-
-        testList.add("안");
-
-        testList.add("돼");
-        mav.addObject("list", testList);
-        System.out.println("왜안돼");
+    public ModelAndView main(HttpServletRequest req){
+        ModelAndView mav = new ModelAndView("template/template");
+        req.setAttribute("CONTENT", "/WEB-INF/jsp/Main.jsp");
         return mav;
     }
 

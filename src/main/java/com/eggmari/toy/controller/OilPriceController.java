@@ -33,6 +33,7 @@ public class OilPriceController {
     @RequestMapping(value = "/OilPrice")
     public ModelAndView main(ModelAndView mav) throws JsonProcessingException {
         mav.setViewName("OilPrice");
+        mav.addObject("area_list", oilPriceService.searchOilPriceList());
         oilPriceService.searchOilPriceForArea("서울");
         return mav;
 
