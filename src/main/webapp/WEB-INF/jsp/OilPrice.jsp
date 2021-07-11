@@ -38,8 +38,9 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Topping');
             data.addColumn('number', '숫자');
-            console.log(oilPrices)
+
             for(var oilprice in oilPrices ) {
+                console.log(oilPrices)
                 data.addRow([ oilprice.save_date , oilprice.oilPrice]);
             }
 
@@ -67,9 +68,8 @@
                 data : {'area' : area, 'term' : term},
                 dataType: 'json',
                 success: function (jsonData) {
-                    var data = new google.visualization.DataTable(jsonData);
-                    drawChart(data);
-                    console.log(data);
+                    drawChart(jsonData);
+                    console.log(jsonData);
                 },
                 error: function (err) {
                     alert(err);
