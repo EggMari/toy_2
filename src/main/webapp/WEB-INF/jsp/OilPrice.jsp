@@ -32,18 +32,17 @@
 
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', '숫자');
         function drawChart(oilPrices) {
-
-
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', '숫자');
-
-            for(var oilprice in oilPrices ) {
-                console.log(oilPrices)
-                data.addRow([ oilprice.save_date , oilprice.oilPrice]);
+            if(oilPrices) {
+                for (var oilprice in oilPrices) {
+                    console.log(oilPrices)
+                    data.addRow([oilprice.save_date, oilprice.oilPrice]);
+                }
             }
-
 
             var options = {
                 title: '그래프차트',
