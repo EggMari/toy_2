@@ -31,12 +31,14 @@
         });
 
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
         var data = new google.visualization.DataTable();
+        google.charts.setOnLoadCallback(drawChart);
 
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', '숫자');
         function drawChart(oilPrices) {
+
+
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', '숫자');
             if(oilPrices) {
                 for (var oilprice in oilPrices) {
                     console.log(oilPrices)
