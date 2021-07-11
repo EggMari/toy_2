@@ -28,23 +28,24 @@
                     }
                 });
             });
-
-            getOilPrices('서울', 'week');
         });
 
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         function drawChart(oilPrices) {
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales', 'Expenses'],
-                ['2004',  1000,      400],
-                ['2005',  1170,      460],
-                ['2006',  660,       1120],
-                ['2007',  1030,      540]
-            ]);
+
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', '숫자');
+            console.log(oilPrices)
+            for(var oilprice in oilPrices ) {
+                data.addRow([ oilprice.save_date , oilprice.oilPrice]);
+            }
+
 
             var options = {
-                title: 'Company Performance',
+                title: '그래프차트',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };
@@ -56,6 +57,8 @@
         }
 
 
+        getOilPrices('서울', 'week');
+
         <%-- 첫 oilprices 세팅--%>
         function  getOilPrices(area, term){
             $.ajax({
@@ -63,7 +66,9 @@
                 type: 'get', // 메소드(get, post, put 등)
                 data : {'area' : area, 'term' : term},
                 dataType: 'json',
-                success: function (data) {
+                success: function (jsonData) {
+                    var data = new google.visualization.DataTable(jsonData);
+                    drawChart(data);
                     console.log(data);
                 },
                 error: function (err) {
