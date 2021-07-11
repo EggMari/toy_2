@@ -3,6 +3,7 @@ package com.eggmari.toy.controller;
 import com.eggmari.toy.service.OilPriceService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -29,12 +31,21 @@ public class OilPriceController {
         return oilPrices;
     }
 
+    @ResponseBody
+    @RequestMapping("/getOilPrices")
+    public JSONArray getoilPriceByTermAndArea(String area, String term){
+
+        return oilPriceService.searchOilPriceForArea(area, term);
+    }
 
     @RequestMapping(value = "/OilPrice")
-    public ModelAndView main(ModelAndView mav) throws JsonProcessingException {
-        mav.setViewName("OilPrice");
+    public ModelAndView main(ModelAndView mav, HttpServletRequest req) throws JsonProcessingException {
+        mav.setViewName("template/template");
+        req.setAttribute("CONTENT", "OilPrice");
+
         mav.addObject("area_list", oilPriceService.searchOilPriceList());
-        oilPriceService.searchOilPriceForArea("서울");
+
+
         return mav;
 
     }

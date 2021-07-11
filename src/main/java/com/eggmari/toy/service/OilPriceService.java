@@ -95,14 +95,24 @@ public class OilPriceService {
 
     }
 
-    public JSONObject searchOilPriceForArea(String area) throws JsonProcessingException {
-        JSONObject json = new JSONObject();
-        List<OilPrice> oilPriceList = new ArrayList<>();
-        oilPriceRepository.findBySaleArea(area).forEach(e -> oilPriceList.add(e));
-        ObjectMapper ojm = new ObjectMapper();
+    public JSONArray searchOilPriceForArea(String area, String Term){
+        JSONArray json = new JSONArray();
+        int termDay = -1;
 
-        String aa = ojm.writeValueAsString(oilPriceList);
-        System.out.println(aa);
+
+        if(Term.equals("week")){
+            termDay = 7;
+        }else if (Term.equals("tweek")){
+            termDay = 14;
+        }else if(Term.equals("month")){
+            termDay = 30;
+        }else{
+            json.add("error");
+            return json;
+        }
+
+        oilPriceRepository.findBySaleAreaOrderByOilIdxDesc(area).forEach(e -> json.add(e));
+
 
         return json;
     }

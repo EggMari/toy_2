@@ -6,6 +6,8 @@
 <html>
 <head>
     <title>개인플젝</title>
+    <!-- 제이쿼리 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- 부가적인 테마 -->
@@ -15,11 +17,12 @@
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/template/header.jsp" />
-
+<div class ="content">
 <!--jsp:include page="/template/mainMenu.jsp" flush="false" /-->
 
 <c:import url="<%=content%>" />
 
 <!--jsp:include page="/template/footer.jsp" flush="false" /-->
+</div>
 </body>
 </html>

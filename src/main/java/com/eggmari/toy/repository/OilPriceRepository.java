@@ -12,8 +12,9 @@ import java.util.List;
 @Repository
 public interface OilPriceRepository extends JpaRepository<OilPrice, Long> {
 
-    List<OilPrice> findBySaleArea(String saleArea);
+    List<OilPrice> findBySaleAreaOrderByOilIdxDesc(String saleArea);
 
     @Query("SELECT saleArea FROM OilPrice GROUP BY saleArea")
     List<String> findSaleAreaList();
+
 }
