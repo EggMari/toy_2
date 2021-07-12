@@ -81,7 +81,7 @@
 
     </script>
 <button id="getoil">버트은</button>
-이곳은 오일가격을 갖고올 프로젝트가 들어올 곳
+이곳은 오일가격을 갖고올 프로젝트가 들어올 곳 ++++++++++++++ cron 적용
 <div class ="col-md-2">
     <select class="form-control" name="oilarea">
         <c:forEach items="${area_list}" var="list">
