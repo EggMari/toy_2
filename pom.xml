@@ -122,6 +122,11 @@
 				<enabled>true</enabled>
 			</releases>
 		</pluginRepository>
+		<pluginRepository>
+			<id>repository.spring.release</id>
+			<name>Spring GA Repository</name>
+			<url>https://repo.spring.io/plugins-release/</url>
+		</pluginRepository>
 
 	</pluginRepositories>
 
