@@ -11,58 +11,59 @@
 
     <script>
         $(document).ready(function () {
-            $('#getoil').on("click", function () {
-                $.ajax({
-                    url: '/oilbutton', //request 보낼 서버의 경로
-                    type: 'get', // 메소드(get, post, put 등)
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data.RESULT.OIL);
-                        data.RESULT.OIL.forEach(element =>
-                                console.log(element.SIDONM + '시 가격' + element.PRICE + '전날과 차이'+ element.DIFF +'원')
-                        );
+            $('#getChart').on("click", function () {
+                let area = $('#oilarea').val();
+                let term= $('#term').val();
 
+                $.ajax({
+                    url: '/getOilPrices', //request 보낼 서버의 경로
+                    type: 'get', // 메소드(get, post, put 등)
+                    data : {'area' : area, 'term' : term},
+                    dataType: 'json',
+                    success: function (jsonData) {
+                        drawChart(jsonData);
+                        console.log(jsonData);
                     },
                     error: function (err) {
                         alert(err);
                     }
                 });
             });
+
+
+
         });
-
         google.charts.load('current', {'packages':['corechart']});
-        var data = new google.visualization.DataTable();
-        google.charts.setOnLoadCallback(drawChart);
 
+        google.charts.setOnLoadCallback(getOilPrices);
         function drawChart(oilPrices) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', '날짜');
+            data.addColumn('number', oilPrices[0].saleArea + ' 경유 가격');
 
-
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', '숫자');
             if(oilPrices) {
-                for (var oilprice in oilPrices) {
-                    console.log(oilPrices)
-                    data.addRow([oilprice.save_date, oilprice.oilPrice]);
+                for (let oilprice in oilPrices) {
+                    data.addRow([oilPrices[oilprice].save_date, oilPrices[oilprice].oilPrice]);
                 }
             }
-
             var options = {
                 title: '그래프차트',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };
 
-
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
 
-
-        getOilPrices('서울', 'week');
-
         <%-- 첫 oilprices 세팅--%>
         function  getOilPrices(area, term){
+            //최초 onload 될때
+            if(area == null || area == undefined){
+                area = '서울';
+                term = 'week';
+            }
+
             $.ajax({
                 url: '/getOilPrices', //request 보낼 서버의 경로
                 type: 'get', // 메소드(get, post, put 등)
@@ -80,17 +81,16 @@
 
 
     </script>
-<button id="getoil">버트은</button>
 이곳은 오일가격을 갖고올 프로젝트가 들어올 곳 ++++++++++++++ cron 적용
 <div class ="col-md-2">
-    <select class="form-control" name="oilarea">
+    <select class="form-control" name="oilarea" id="oilarea">
         <c:forEach items="${area_list}" var="list">
             <option value="${list}"> ${list} </option>
         </c:forEach>
     </select>
 </div>
 <div class ="col-md-2">
-    <select class="form-control" name = "term">
+    <select class="form-control" name = "term" id="term">
         <option value="week">1주</option>
         <option value="tweek">2주</option>
         <option value="month">1달</option>

@@ -96,6 +96,7 @@ public class OilPriceService {
     }
 
     public JSONArray searchOilPriceForArea(String area, String Term){
+
         JSONArray json = new JSONArray();
         int termDay = -1;
 
@@ -111,8 +112,7 @@ public class OilPriceService {
             return json;
         }
 
-        oilPriceRepository.findBySaleAreaOrderByOilIdxDesc(area).forEach(e -> json.add(e));
-
+        oilPriceRepository.findBySaleAreaOrderByOilIdxAsc(area).forEach(e -> json.add(e));
 
         return json;
     }

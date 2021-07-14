@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenerationTime;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,7 +30,7 @@ public class OilPrice {
     private String saleArea;
 
     @Column
-    private LocalDateTime save_date;
+    private LocalDate save_date;
 
     public OilPrice(int oilIdx, String oilKind, String saleArea, double oilPrice, double oilPriceIncrease)
     {
@@ -41,7 +42,7 @@ public class OilPrice {
     }
     @PrePersist
     public void createdAt() {
-        this.save_date = LocalDateTime.now();
+        this.save_date = LocalDate.now();
     }
 
 
