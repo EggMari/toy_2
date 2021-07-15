@@ -47,7 +47,7 @@
                 }
             }
             var options = {
-                title: '그래프차트',
+                title: oilPrices[0].saleArea+'시 경유 가격',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };
