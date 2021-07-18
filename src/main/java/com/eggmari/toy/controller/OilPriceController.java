@@ -1,5 +1,6 @@
 package com.eggmari.toy.controller;
 
+import com.eggmari.toy.service.MenuService;
 import com.eggmari.toy.service.OilPriceService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,9 @@ public class OilPriceController {
     @Autowired
     private final OilPriceService oilPriceService;
 
+    @Autowired
+    private final MenuService menuService;
+
     @ResponseBody
     @RequestMapping(value = "/oilbutton")
     public JSONObject button() throws ParseException {
@@ -42,6 +46,7 @@ public class OilPriceController {
     public ModelAndView main(ModelAndView mav, HttpServletRequest req) throws JsonProcessingException {
         mav.setViewName("template/template");
         req.setAttribute("CONTENT", "OilPrice");
+        mav.addObject("menus", menuService.searchMenuList());
 
         mav.addObject("area_list", oilPriceService.searchOilPriceList());
 

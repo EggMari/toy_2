@@ -11,7 +11,8 @@ import java.util.List;
 
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Long> {
+
     @Query("SELECT menuName, menuSrc FROM Menu")
-    List<Menu> findMenus();
+    List<MenuSrcAndNameInterface> findMenus();
 
 }

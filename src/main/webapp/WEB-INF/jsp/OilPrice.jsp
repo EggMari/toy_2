@@ -78,25 +78,27 @@
                 }
             });
         }
-
-
     </script>
-이곳은 오일가격을 갖고올 프로젝트가 들어올 곳 ++++++++++++++ cron 적용
-<div class ="col-md-2">
-    <select class="form-control" name="oilarea" id="oilarea">
-        <c:forEach items="${area_list}" var="list">
-            <option value="${list}"> ${list} </option>
-        </c:forEach>
-    </select>
+
+<div class="row">
+    <div class ="col-md-2 col-md-offset-1">
+        <select class="form-control" name="oilarea" id="oilarea">
+            <c:forEach items="${area_list}" var="list">
+                <option value="${list}"> ${list} </option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class ="col-md-2">
+        <select class="form-control" name = "term" id="term">
+            <option value="week">1주</option>
+            <option value="tweek">2주</option>
+            <option value="month">1달</option>
+        </select>
+    </div>
+    <button class="btn btn-default col-md-2" id="getChart">가져오기</button>
 </div>
-<div class ="col-md-2">
-    <select class="form-control" name = "term" id="term">
-        <option value="week">1주</option>
-        <option value="tweek">2주</option>
-        <option value="month">1달</option>
-    </select>
-</div>
-<button class="btn btn-default col-md-2" id="getChart">가져오기</button>
+
+
 <div id="chart_div"></div>
 
 

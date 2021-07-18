@@ -27,7 +27,7 @@ public class MenuService {
     private final MenuRepository menuRepository;
 
     public List<Menu> searchMenuList(){
-        List<Menu> menu_list = menuRepository.findMenus();
+        List<Menu> menu_list = menuRepository.findAll();
         return menu_list;
     }
 

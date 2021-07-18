@@ -19,3 +19,10 @@ public class ToyprojectApplication {
 	}
 
 }
+/*
+* TO-DO
+*
+* 구글 비전 API 사용 텍스트 인식
+* 전체적인 페이지 UI 구성
+*
+* */
