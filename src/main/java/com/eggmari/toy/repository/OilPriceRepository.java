@@ -17,4 +17,10 @@ public interface OilPriceRepository extends JpaRepository<OilPrice, Long> {
     @Query("SELECT saleArea FROM OilPrice GROUP BY saleArea")
     List<String> findSaleAreaList();
 
+    List<OilPrice> findTop7BySaleAreaOrderByOilIdxAsc(String saleArea);
+
+    List<OilPrice> findTop14BySaleAreaOrderByOilIdxAsc(String saleArea);
+
+    List<OilPrice> findTop28BySaleAreaOrderByOilIdxAsc(String saleArea);
+
 }

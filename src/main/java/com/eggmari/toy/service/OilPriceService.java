@@ -102,18 +102,14 @@ public class OilPriceService {
 
 
         if(Term.equals("week")){
-            termDay = 7;
+            oilPriceRepository.findTop7BySaleAreaOrderByOilIdxAsc(area).forEach(e -> json.add(e));
         }else if (Term.equals("tweek")){
-            termDay = 14;
+            oilPriceRepository.findTop14BySaleAreaOrderByOilIdxAsc(area).forEach(e -> json.add(e));
         }else if(Term.equals("month")){
-            termDay = 30;
+            oilPriceRepository.findTop28BySaleAreaOrderByOilIdxAsc(area).forEach(e -> json.add(e));
         }else{
-            json.add("error");
-            return json;
+            oilPriceRepository.findBySaleAreaOrderByOilIdxAsc(area).forEach(e -> json.add(e));
         }
-
-        oilPriceRepository.findBySaleAreaOrderByOilIdxAsc(area).forEach(e -> json.add(e));
-
         return json;
     }
 
