@@ -23,9 +23,9 @@
     }
 </script>
 
-<div class="row" class="col-md-10 col-md-offset-1">
-    <input type="text" placeholder="사진의 url을 입력해주세요"/>
-    <input type="submit" />
+<div class="row">
+    <input type="text" placeholder="사진의 url을 입력해주세요" class="col-md-5 col-md-offset-2"/>
+    <input type="submit" class="col-md-2 col-md-offset-1" />
 </div>
 
 
@@ -44,8 +44,8 @@
     </textarea>
 
 </div>
-<div class="row col-md-12" >
-    <input type="text" id="console" class="col-md-5 col-md-offset-1"></div>
-    <input type="submit" class="col-md-2" />
+<div class="row" >
+    <input type="text" placeholder="긁은 메세지가 나옵니다" id="console" class="col-md-5 col-md-offset-2">
+    <input type="submit" class="col-md-1 col-md-offset-1" />
 </div>
 
