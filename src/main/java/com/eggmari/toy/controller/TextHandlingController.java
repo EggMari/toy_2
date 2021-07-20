@@ -38,8 +38,7 @@ public class TextHandlingController {
     @ResponseBody
     @RequestMapping(value = "/veisonAPI")
     public String visionAPI(String src){
-        String textFromImage =
-                this.cloudVisionTemplate.extractTextFromImage(this.resourceLoader.getResource("https://img.theqoo.net/img/MghrA.jpg"));
+        String textFromImage =  this.cloudVisionTemplate.extractTextFromImage(this.resourceLoader.getResource(src));
         System.out.println(textFromImage);
         return textFromImage;
     }

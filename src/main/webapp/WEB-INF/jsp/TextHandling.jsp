@@ -19,13 +19,34 @@
     }
 
     document.onmouseup = function() {
-       $('#console').val(selectText()) ;
+        $('#console').val(selectText());
     }
+    $( document ).ready(function() {
+        $('#imgSrc').on('click', function (){
+            let imgsrc = $('#imgUrl').val();
+                console.log('구글에서 번역중');
+                $.ajax({
+                    url: '/veisonAPI', //request 보낼 서버의 경로
+                    type: 'get', // 메소드(get, post, put 등)
+                    data : {'src' : imgsrc},
+                    dataType: 'text',
+                    success: function (data) {
+                        $('#textarea').val(data);
+                        console.log(data);
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                });
+        });
+
+    });
+
 </script>
 
 <div class="row">
-    <input type="text" placeholder="사진의 url을 입력해주세요" class="col-md-5 col-md-offset-2"/>
-    <input type="submit" class="col-md-2 col-md-offset-1" />
+    <input type="text" id="imgUrl" placeholder="사진의 url을 입력해주세요" class="col-md-5 col-md-offset-2"/>
+    <input type="button" id="imgSrc" class="col-md-2 col-md-offset-1" />
 </div>
 
 
