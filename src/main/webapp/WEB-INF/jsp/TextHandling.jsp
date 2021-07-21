@@ -46,7 +46,7 @@
 
 <div class="row">
     <input type="text" id="imgUrl" placeholder="사진의 url을 입력해주세요" class="col-md-5 col-md-offset-2"/>
-    <input type="button" id="imgSrc" class="col-md-2 col-md-offset-1" />
+    <input type="button" id="imgSrc" value="번역하기" class="col-md-2 col-md-offset-1" />
 </div>
 
 
@@ -67,6 +67,6 @@
 </div>
 <div class="row" >
     <input type="text" placeholder="긁은 메세지가 나옵니다" id="console" class="col-md-5 col-md-offset-2">
-    <input type="submit" class="col-md-1 col-md-offset-1" />
+    <input type="submit" value="저장하기" class="col-md-1 col-md-offset-1" />
 </div>
 
