@@ -31,7 +31,6 @@ public class TextHandlingController {
     public ModelAndView main(ModelAndView mav, HttpServletRequest req) throws JsonProcessingException {
         mav.setViewName("template/template");
         req.setAttribute("CONTENT", "TextHandling");
-        mav.addObject("menus", menuService.searchMenuList());
         return mav;
     }
 
@@ -42,6 +41,7 @@ public class TextHandlingController {
         System.out.println(textFromImage);
         return textFromImage;
     }
+
 
 
 }

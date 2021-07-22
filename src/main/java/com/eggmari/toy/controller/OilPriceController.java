@@ -46,7 +46,6 @@ public class OilPriceController {
     public ModelAndView main(ModelAndView mav, HttpServletRequest req) throws JsonProcessingException {
         mav.setViewName("template/template");
         req.setAttribute("CONTENT", "OilPrice");
-        mav.addObject("menus", menuService.searchMenuList());
 
         mav.addObject("area_list", oilPriceService.searchOilPriceList());
 

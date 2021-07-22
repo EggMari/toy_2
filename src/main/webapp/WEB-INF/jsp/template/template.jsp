@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<c:import url="/WEB-INF/jsp/template/header.jsp" />
+<c:import url="/menus" />
 <div class ="content">
 <!--jsp:include page="/template/mainMenu.jsp" flush="false" /-->
 
