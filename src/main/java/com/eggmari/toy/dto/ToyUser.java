@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @Entity
-public class User {
+public class ToyUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class User {
     @Column
     private LocalDate ins_date;
 
-    public User(String userId, String userPwd)
+    public ToyUser(String userId, String userPwd)
     {
         this.userId = userId;
         this.userPwd = userPwd;
