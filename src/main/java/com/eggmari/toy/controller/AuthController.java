@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 
@@ -22,5 +24,14 @@ public class AuthController {
 
         return a;
     }
+    @RequestMapping(value = "/joinToy")
+    public ModelAndView joinToy(HttpServletRequest req) {
+        ModelAndView mav = new ModelAndView("template/template");
+        req.setAttribute("CONTENT", "JoinToy");
+
+        return mav;
+    }
+
+
 
 }
