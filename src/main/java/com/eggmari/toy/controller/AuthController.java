@@ -19,10 +19,9 @@ public class AuthController {
     public AuthService authService;
 
     @RequestMapping(value = "/signforeggmari")
-    public int main(String id, String pwd) throws GeneralSecurityException, UnsupportedEncodingException {
-        int a = authService.InsertUser(id, pwd);
+    public void main(String id, String pwd) throws GeneralSecurityException, UnsupportedEncodingException {
+       authService.InsertUser(id, pwd);
 
-        return a;
     }
     @RequestMapping(value = "/joinToy")
     public ModelAndView joinToy(HttpServletRequest req) {
