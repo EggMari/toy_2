@@ -27,4 +27,12 @@ public class AuthService {
 
         return 0;
     }
+
+    public String logInToy(String id, String pwd) throws UnsupportedEncodingException, GeneralSecurityException {
+        Crypto crypto = new Crypto();
+        pwd = crypto.encrypt(pwd);
+        String  user = userRepository.findToyUserByUserIdAndUserPwd(id, pwd);
+
+        return user;
+    }
 }

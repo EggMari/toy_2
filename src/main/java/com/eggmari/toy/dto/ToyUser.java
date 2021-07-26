@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @Entity
-public class ToyUser {
+public class ToyUser{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +37,16 @@ public class ToyUser {
     @PrePersist
     public void createdAt() {
         this.ins_date = LocalDate.now();
+    }
+
+    @Override
+    public String toString() {
+        return "ToyUser{" +
+                "userIdx=" + userIdx +
+                ", userId='" + userId + '\'' +
+                ", userPwd='" + userPwd + '\'' +
+                ", point=" + point +
+                ", ins_date=" + ins_date +
+                '}';
     }
 }
