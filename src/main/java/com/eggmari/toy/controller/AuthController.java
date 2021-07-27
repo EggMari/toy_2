@@ -37,18 +37,31 @@ public class AuthController {
         return mav;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/logInToy")
-    public String logInToy(HttpSession session, HttpServletRequest req, Cookie cookie, String id, String pwd) throws GeneralSecurityException, UnsupportedEncodingException {
+    public ModelAndView logInToy(HttpSession session, HttpServletRequest req) throws GeneralSecurityException, UnsupportedEncodingException {
         ModelAndView mav = new ModelAndView("template/template");
+        String userid = req.getParameter("userid");
+        String userpwd = req.getParameter("userpwd");
+
+        String returnUrl =  req.getHeader("referer");
+        returnUrl = returnUrl.substring(returnUrl.lastIndexOf("/"));
+        String toyUser =  authService.logInToy(userid, userpwd);
+        req.setAttribute("CONTENT", returnUrl);
+        session.setAttribute("toyUserId", toyUser.substring(1));
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/logoutToy")
+    public ModelAndView logoutToy(HttpSession session, HttpServletRequest req) throws GeneralSecurityException, UnsupportedEncodingException {
+        ModelAndView mav = new ModelAndView("template/template");
+        session.removeAttribute("toyUserId");
 
 
-        String toyUser =  authService.logInToy(id, pwd);
-
-        session.setAttribute("toyUserId", toyUser);
+        req.setAttribute("CONTENT", "Main");
 
 
-        return toyUser;
+        return mav;
     }
 
 
