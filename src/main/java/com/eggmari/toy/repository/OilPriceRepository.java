@@ -12,15 +12,15 @@ import java.util.List;
 @Repository
 public interface OilPriceRepository extends JpaRepository<OilPrice, Long> {
 
-    List<OilPrice> findBySaleAreaOrderByOilIdxAsc(String saleArea);
+    List<OilPrice> findBySaleAreaOrderByOilIdxDesc(String saleArea);
 
     @Query("SELECT saleArea FROM OilPrice GROUP BY saleArea")
     List<String> findSaleAreaList();
 
-    List<OilPrice> findTop7BySaleAreaOrderByOilIdxAsc(String saleArea);
+    List<OilPrice> findTop7BySaleAreaOrderByOilIdxDesc(String saleArea);
 
-    List<OilPrice> findTop14BySaleAreaOrderByOilIdxAsc(String saleArea);
+    List<OilPrice> findTop14BySaleAreaOrderByOilIdxDesc(String saleArea);
 
-    List<OilPrice> findTop28BySaleAreaOrderByOilIdxAsc(String saleArea);
+    List<OilPrice> findTop28BySaleAreaOrderByOilIdxDesc(String saleArea);
 
 }
