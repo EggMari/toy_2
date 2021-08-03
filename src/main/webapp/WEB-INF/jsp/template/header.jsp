@@ -7,6 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#navbar"
+        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">메뉴 펼치기</span>
+</button>
+
+
 
 <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
@@ -61,3 +68,4 @@
         </div>
     </div>
 </div>
+</nav>
