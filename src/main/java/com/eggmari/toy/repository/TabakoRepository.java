@@ -15,4 +15,6 @@ public interface TabakoRepository extends JpaRepository<TabakoArea, Long> {
 /*
 * insert문 추가 예정
 * */
+
+
 }
