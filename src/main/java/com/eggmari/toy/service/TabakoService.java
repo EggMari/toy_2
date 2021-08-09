@@ -22,8 +22,8 @@ public class TabakoService {
         return area_list;
     }
 
-    public void insertArea(int tabakoIdx, double longitude,double latitude, String areaName, String areaContent, int reportCnt, int goodCnt, int userIdx, String macAddr){
-        TabakoArea tabakoArea = new TabakoArea(tabakoIdx, longitude, latitude, areaName, areaContent, reportCnt, goodCnt, userIdx, macAddr);
+    public void insertArea(double longitude,double latitude, String areaName, String areaContent, String macAddr){
+        TabakoArea tabakoArea = new TabakoArea(longitude, latitude, areaName, areaContent, macAddr);
 
         tabakoRepository.save(tabakoArea);
     }

@@ -32,13 +32,17 @@ public class TabacoController {
 
     }
 
-    @RequestMapping(value = "/inputTabako")
-    public void insertArea(int tabakoIdx, double longitude,double latitude, String areaName, String areaContent, int reportCnt, int goodCnt, int userIdx){
+    @RequestMapping(value = "/registArea")
+    public void insertArea( double lat,double lang, String area_name, String area_content){
         MacAdress mac = new MacAdress();
         String macAddr = mac.getLocalMacAddress();
-        tabakoService.insertArea(tabakoIdx, longitude, latitude, areaName, areaContent, reportCnt, goodCnt, userIdx, macAddr);
+        System.out.println(lat);
+        System.out.println(lang);
+        System.out.println(area_name);
+        System.out.println(area_content);
+        System.out.println(macAddr);
 
-
+        tabakoService.insertArea(lat, lang, area_name, area_content, macAddr);
     }
 
 

@@ -33,15 +33,11 @@ public class TabakoArea {
     @Column(name ="mac_addr",length = 20, nullable = false)
     private String macAddr;
 
-    public TabakoArea(int tabakoIdx, double longitude,double latitude, String areaName, String areaContent, int reportCnt, int goodCnt, int userIdx, String macAddr)
+    public TabakoArea(double longitude,double latitude, String areaName, String areaContent, String macAddr)
     {
-        this.tabakoIdx = tabakoIdx;
         this.longitude = longitude;
         this.latitude = latitude;
         this.areaName = areaName;
-        this.reportCnt = reportCnt;
-        this.goodCnt = goodCnt;
-        this.userIdx = userIdx;
         this.macAddr = macAddr;
         this.areaContent = areaContent;
     }

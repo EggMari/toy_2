@@ -2,11 +2,114 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0cc41577aebb5445f37e5c60bb2cdb78"></script>
+
+<script>
+    $(document).ready(function(){
+        let latitude = 33.450701;
+        let longitude = 126.570667;
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            latitude = pos.coords.latitude;
+            longitude = pos.coords.longitude;
+            setmap(latitude, longitude);
+        });
+        function setmap(latitude, longitude){
+            var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+            var options = { //지도를 생성할 때 필요한 기본 옵션
+                center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+                level: 3 //지도의 레벨(확대, 축소 정도)
+            };
+            var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+            // 마커를 표시할 위치와 title 객체 배열입니다
+            var positions = [
+                {
+                    title: '카카오',
+                    latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+                },
+                {
+                    title: '생태연못',
+                    latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+                },
+                {
+                    title: '텃밭',
+                    latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+                },
+                {
+                    title: '근린공원',
+                    latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+                }
+            ];
+
+    // 마커 이미지의 이미지 주소입니다
+            var imageSrc = "https://emojiguide.com/wp-content/uploads/platform/twitter/43492.png";
+
+            for (var i = 0; i < positions.length; i ++) {
+
+                // 마커 이미지의 이미지 크기 입니다
+                var imageSize = new kakao.maps.Size(24, 35);
+
+                // 마커 이미지를 생성합니다
+                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: positions[i].latlng, // 마커를 표시할 위치
+                    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image : markerImage // 마커 이미지
+                });
+            }
+        }
+
+        $('#submit').click(function (e){
+            e.preventDefault();
+            $('#lat').val(latitude);
+            $('#lang').val(longitude);
+
+            $('#registArea').submit();
+        });
+    });
+</script>
+
 <body>
-<h2>흡연구역 지도 ${mac}</h2>
+<h2>흡연구역 지도 </h2>
 
 <div id="map" style="width:100%;height:70%;"></div>
 
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#areaModal">
+    장소 등록
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="areaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">흡연구역 등록</h4>
+            </div>
+            <div class="modal-body">
+                <form name="registArea" id="registArea" action="/registArea" method="get">
+                    <input type="hidden" name="lat" id="lat" class="form-control" id="lat">
+                    <input type="hidden" name="lang" id="lang" class="form-control" id="lang">
+                    <div class="form-group">
+                        <label for="area_name" class="control-label">장소명</label>
+                        <input type="text" name="area_name"  class="form-control" id="area_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="area_content" class="control-label">장소 설명</label>
+                        <input type="textbox" name="area_content" class="form-control" id="area_content">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        <button type="button" id="submit" class="btn btn-primary">등록하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <h3>환경 구축 사용 기술</h3>
@@ -56,62 +159,4 @@
 
 </body>
 
-<script>
-    let latitude = 33.450701;
-    let longitude = 126.570667;
-    navigator.geolocation.getCurrentPosition(function(pos) {
-        latitude = pos.coords.latitude;
-        longitude = pos.coords.longitude;
-        setmap(latitude, longitude);
-
-    });
-    function setmap(latitude, longitude){
-        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-        var options = { //지도를 생성할 때 필요한 기본 옵션
-            center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
-            level: 3 //지도의 레벨(확대, 축소 정도)
-        };
-        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-        // 마커를 표시할 위치와 title 객체 배열입니다
-        var positions = [
-            {
-                title: '카카오',
-                latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-            },
-            {
-                title: '생태연못',
-                latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-            },
-            {
-                title: '텃밭',
-                latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-            },
-            {
-                title: '근린공원',
-                latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-            }
-        ];
-
-// 마커 이미지의 이미지 주소입니다
-        var imageSrc = "https://emojiguide.com/wp-content/uploads/platform/twitter/43492.png";
-
-        for (var i = 0; i < positions.length; i ++) {
-
-            // 마커 이미지의 이미지 크기 입니다
-            var imageSize = new kakao.maps.Size(24, 35);
-
-            // 마커 이미지를 생성합니다
-            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng, // 마커를 표시할 위치
-                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                image : markerImage // 마커 이미지
-            });
-        }
-    }
-</script>
 </html>
