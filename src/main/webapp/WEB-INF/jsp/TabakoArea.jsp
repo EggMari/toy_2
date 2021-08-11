@@ -58,16 +58,50 @@
                     title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                     image : markerImage // 마커 이미지
                 });
+                setmap(latitude, longitude);
             }
         }
 
-        $('#submit').click(function (e){
+
+
+
+        $('#location').click(function (e){
             e.preventDefault();
             $('#lat').val(latitude);
             $('#lang').val(longitude);
-
-            $('#registArea').submit();
         });
+        getArea = function(){
+            $.ajax({
+                url: "/getArea",
+                type: "",
+                dataType: "",
+                data: "",
+                success: function(data){
+                    positions = data;
+                    for (var i = 0; i < positions.length; i ++) {
+
+                        // 마커 이미지의 이미지 크기 입니다
+                        var imageSize = new kakao.maps.Size(24, 35);
+
+                        // 마커 이미지를 생성합니다
+                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                        // 마커를 생성합니다
+                        var marker = new kakao.maps.Marker({
+                            map: map, // 마커를 표시할 지도
+                            position: positions[i].latlng, // 마커를 표시할 위치
+                            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                            image : markerImage // 마커 이미지
+                        });
+                    }
+
+                },
+                error: function (request, status, error){
+
+                }
+            });
+        }
+
     });
 </script>
 
@@ -76,7 +110,7 @@
 
 <div id="map" style="width:100%;height:70%;"></div>
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#areaModal">
+<button type="button" id="location" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#areaModal">
     장소 등록
 </button>
 
@@ -89,7 +123,7 @@
                 <h4 class="modal-title" id="myModalLabel">흡연구역 등록</h4>
             </div>
             <div class="modal-body">
-                <form name="registArea" id="registArea" action="/registArea" method="get">
+                <form name="registArea" id="registArea" action="/registArea" method="POST">
                     <input type="hidden" name="lat" id="lat" class="form-control" id="lat">
                     <input type="hidden" name="lang" id="lang" class="form-control" id="lang">
                     <div class="form-group">
@@ -103,7 +137,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                        <button type="button" id="submit" class="btn btn-primary">등록하기</button>
+                        <input type="submit" class="btn btn-primary" value="등록"/>
                     </div>
                 </form>
             </div>
