@@ -71,11 +71,21 @@
             $('#lang').val(longitude);
         });
         getArea = function(){
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                latitude = pos.coords.latitude;
+                longitude = pos.coords.longitude;
+                setmap(latitude, longitude);
+            });
+        }
+
+
+        getAreaList = function(){
             $.ajax({
                 url: "/getArea",
                 type: "",
                 dataType: "",
-                data: "",
+                data: {latitude : latitude,
+                    longitude : longitude},
                 success: function(data){
                     positions = data;
                     for (var i = 0; i < positions.length; i ++) {

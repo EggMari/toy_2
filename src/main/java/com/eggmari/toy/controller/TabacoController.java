@@ -1,12 +1,10 @@
 package com.eggmari.toy.controller;
 
 
-import com.eggmari.toy.dto.TabakoArea;
-import com.eggmari.toy.service.MenuService;
 import com.eggmari.toy.service.TabakoService;
 import com.eggmari.toy.util.MacAdress;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,12 +47,13 @@ public class TabacoController {
 
         tabakoService.insertArea(lat, lang, area_name, area_content, macAddr);
     }
-    @ResponseBody
-    @RequestMapping(value = "/getArea")
-    public JSONObject button() throws ParseException {
 
-        JSONObject tabakoareas = null;// tabakoService.get();
-      //  oilPriceService.savePrices(oilPrices);
+    @ResponseBody
+    @RequestMapping(value = "/getAreaList")
+    public JSONArray getAreaList(double lat,double lang) throws ParseException {
+        System.out.println(lat);
+        System.out.println(lang);
+        JSONArray  tabakoareas = tabakoService.getArea(lat, lang);
         return tabakoareas;
     }
 

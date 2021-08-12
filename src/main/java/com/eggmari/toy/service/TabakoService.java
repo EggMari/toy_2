@@ -1,11 +1,10 @@
 package com.eggmari.toy.service;
 
 
-import com.eggmari.toy.dto.Menu;
 import com.eggmari.toy.dto.TabakoArea;
-import com.eggmari.toy.repository.MenuRepository;
 import com.eggmari.toy.repository.TabakoRepository;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +25,13 @@ public class TabakoService {
         TabakoArea tabakoArea = new TabakoArea(longitude, latitude, areaName, areaContent, macAddr);
 
         tabakoRepository.save(tabakoArea);
+    }
+
+    public JSONArray getArea(double longitude, double latitude){
+        JSONArray json = new JSONArray();
+        tabakoRepository.findAllByTabakoIdxDesc().forEach(e -> json.add(e));
+
+        return json;
     }
 
 }
