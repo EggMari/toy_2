@@ -16,9 +16,11 @@ public class TabakoService {
     private final TabakoRepository tabakoRepository;
 
 
-    public List<TabakoArea> searchAreaList(){
-        List<TabakoArea> area_list = tabakoRepository.findAll();
-        return area_list;
+    public JSONArray searchAreaList(double longitude, double latitude){
+        JSONArray json = new JSONArray();
+        tabakoRepository.findAll().forEach(e -> json.add(e));
+
+        return json;
     }
 
     public void insertArea(double longitude,double latitude, String areaName, String areaContent, String macAddr){
@@ -27,11 +29,5 @@ public class TabakoService {
         tabakoRepository.save(tabakoArea);
     }
 
-    public JSONArray getArea(double longitude, double latitude){
-        JSONArray json = new JSONArray();
-        tabakoRepository.findAllByTabakoIdxDesc().forEach(e -> json.add(e));
-
-        return json;
-    }
 
 }

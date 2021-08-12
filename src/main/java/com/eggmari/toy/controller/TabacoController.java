@@ -53,7 +53,7 @@ public class TabacoController {
     public JSONArray getAreaList(double lat,double lang) throws ParseException {
         System.out.println(lat);
         System.out.println(lang);
-        JSONArray  tabakoareas = tabakoService.getArea(lat, lang);
+        JSONArray  tabakoareas = tabakoService.searchAreaList(lat, lang);
         return tabakoareas;
     }
 

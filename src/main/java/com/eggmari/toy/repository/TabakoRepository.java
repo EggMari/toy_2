@@ -15,10 +15,8 @@ public interface TabakoRepository extends JpaRepository<TabakoArea, Long> {
 * insert문 추가 예정
 * */
 
-    @Query("SELECT saleArea FROM OilPrice GROUP BY saleArea")
-    List<String> findSaleAreaList();
 
-    List<TabakoArea> findAllByTabakoIdxDesc();
+    List<TabakoArea> findAll();
 
 
 }
