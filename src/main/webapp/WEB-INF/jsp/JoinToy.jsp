@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="col-md-5 col-md-offset-3">
-    <form action="/signforeggmari">
+    <form name="signforeggmari" id="signforeggmari" action="/signforeggmari" method="POST">
         <div class="form-group">
             <label for="id">아이디</label>
-            <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요">
+            <input type="text" class="form-control" name="id" id="id" placeholder="아이디를 입력하세요">
         </div>
         <div class="form-group">
             <label for="pwd">암호</label>
-            <input type="password" class="form-control" id="pwd" placeholder="암호">
+            <input type="password" class="form-control" name="pwd" id="pwd" placeholder="암호">
         </div>
         <!--div class="form-group">
             <label for="exampleInputFile">파일 업로드</label>
