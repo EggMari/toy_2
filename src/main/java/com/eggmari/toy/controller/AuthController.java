@@ -26,7 +26,6 @@ public class AuthController {
 
     @RequestMapping(value = "/signforeggmari")
     public String signforeggmari(HttpServletRequest req, String id, String pwd) throws GeneralSecurityException, UnsupportedEncodingException {
-        System.out.println(id + pwd);
        authService.InsertUser(id, pwd);
        return "redirect:/";
     }
