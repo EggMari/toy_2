@@ -20,7 +20,7 @@ public class AuthService {
         Crypto crypto = new Crypto();
         pwd = crypto.encrypt(pwd);
 
-        ToyUser user = new ToyUser(id, pwd);
+        ToyUser user = new ToyUser(id, pwd, 0);//initial point 0
 
         userRepository.save(user);
 

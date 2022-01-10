@@ -34,7 +34,7 @@ public class TabacoController {
     }
 
     @RequestMapping(value = "/registArea")
-    public void insertArea(HttpServletRequest req, double lat,double lang, String area_name, String area_content){
+    public String insertArea(HttpServletRequest req, double lat,double lang, String area_name, String area_content){
         MacAdress mac = new MacAdress();
         String macAddr = mac.getLocalMacAddress();
 
@@ -46,6 +46,7 @@ public class TabacoController {
         System.out.println(macAddr);
 
         tabakoService.insertArea(lat, lang, area_name, area_content, macAddr);
+        return "redirect:/tabako";
     }
 
     @ResponseBody

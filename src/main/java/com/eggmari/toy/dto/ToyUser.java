@@ -27,10 +27,11 @@ public class ToyUser{
     @Column
     private LocalDate ins_date;
 
-    public ToyUser(String userId, String userPwd)
+    public ToyUser(String userId, String userPwd, int point)
     {
         this.userId = userId;
         this.userPwd = userPwd;
+        this.point = point;
     }
 
 
